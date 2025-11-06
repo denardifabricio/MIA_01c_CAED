@@ -1,0 +1,102 @@
+// Entrada: a+b (a y b son números binarios)
+// Salida: a+b
+// Ejemplo: 1011+10 devuelve 1101
+//
+// Algoritmo de Suma Binaria
+// para Simulador de Máquina de Turing
+// turingmachinesimulator.com
+// Generado desde clase Python
+
+name: Binary addition
+init: INICIO
+accept: FIN
+
+INICIO,0,_,_
+INICIO,0,_,_,>,-,-
+
+INICIO,1,_,_
+INICIO,1,_,_,>,-,-
+
+INICIO,+,_,_
+COPIAR_NUM2,_,_,_,>,>,-
+
+COPIAR_NUM2,0,_,_
+COPIAR_NUM2,_,0,_,>,>,-
+
+COPIAR_NUM2,1,_,_
+COPIAR_NUM2,_,1,_,>,>,-
+
+COPIAR_NUM2,_,_,_
+PREPARAR_SUMA,_,_,_,<,<,-
+
+PREPARAR_SUMA,_,0,_
+PREPARAR_SUMA,_,0,_,<,-,-
+
+PREPARAR_SUMA,_,1,_
+PREPARAR_SUMA,_,1,_,<,-,-
+
+PREPARAR_SUMA,1,0,_
+SUMAR_SIN_CARRY,1,0,_,-,-,-
+
+PREPARAR_SUMA,1,1,_
+SUMAR_SIN_CARRY,1,1,_,-,-,-
+
+PREPARAR_SUMA,0,1,_
+SUMAR_SIN_CARRY,0,1,_,-,-,-
+
+PREPARAR_SUMA,0,0,_
+SUMAR_SIN_CARRY,0,0,_,-,-,-
+
+SUMAR_SIN_CARRY,1,0,_
+SUMAR_SIN_CARRY,1,0,1,<,<,<
+
+SUMAR_SIN_CARRY,0,1,_
+SUMAR_SIN_CARRY,0,1,1,<,<,<
+
+SUMAR_SIN_CARRY,0,0,_
+SUMAR_SIN_CARRY,0,0,0,<,<,<
+
+SUMAR_SIN_CARRY,1,1,_
+SUMAR_CON_CARRY,1,1,0,<,<,<
+
+SUMAR_SIN_CARRY,_,_,_
+FIN,_,_,_,-,-,-
+
+SUMAR_SIN_CARRY,1,_,_
+SUMAR_SIN_CARRY,1,_,1,<,<,<
+
+SUMAR_SIN_CARRY,0,_,_
+SUMAR_SIN_CARRY,0,_,0,<,<,<
+
+SUMAR_SIN_CARRY,_,1,_
+SUMAR_SIN_CARRY,_,1,1,<,<,<
+
+SUMAR_SIN_CARRY,_,0,_
+SUMAR_SIN_CARRY,_,0,0,<,<,<
+
+SUMAR_CON_CARRY,0,0,_
+SUMAR_SIN_CARRY,0,0,1,<,<,<
+
+SUMAR_CON_CARRY,0,1,_
+SUMAR_CON_CARRY,0,1,0,<,<,<
+
+SUMAR_CON_CARRY,1,0,_
+SUMAR_CON_CARRY,1,0,0,<,<,<
+
+SUMAR_CON_CARRY,1,1,_
+SUMAR_CON_CARRY,1,1,1,<,<,<
+
+SUMAR_CON_CARRY,_,0,_
+SUMAR_SIN_CARRY,_,0,1,<,<,<
+
+SUMAR_CON_CARRY,_,1,_
+SUMAR_CON_CARRY,_,1,0,<,<,<
+
+SUMAR_CON_CARRY,1,_,_
+SUMAR_CON_CARRY,1,_,0,<,<,<
+
+SUMAR_CON_CARRY,0,_,_
+SUMAR_SIN_CARRY,0,_,1,<,<,<
+
+SUMAR_CON_CARRY,_,_,_
+FIN,_,_,1,-,-,-
