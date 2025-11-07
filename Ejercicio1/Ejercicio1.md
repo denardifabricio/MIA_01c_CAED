@@ -4,7 +4,7 @@
 
 Este proyecto implementa **dos versiones** de una máquina de Turing que suma números binarios:
 
-1. **Versión de 3 cintas (simulada)**: Implementación simplificada que simula suma bit a bit
+1. **Versión de 3 cintas**: Implementación simplificada que simula suma bit a bit
 2. **Versión de 1 cinta**: Implementación basada en el algoritmo "implicit-binary-add"
 
 Ambas máquinas toman como entrada dos números binarios en formato `a+b` y producen como salida la suma en formato binario.
@@ -21,7 +21,7 @@ Se desarrolló completamente la versión de 3 cintas. Adicionalmente y por curio
 2. **Versión de 1 cinta**: 
 [suma_binaria_3_cintas_101+110.mov](https://drive.google.com/file/d/1Tw2BcpaJVxhiYiwpn9wOpOkoh4mIuGJl/view?usp=drive_link)
 
-## Versión de 3 Cintas (Simulada)
+## Versión de 3 Cintas 
 
 ### Descripción
 La máquina de 3 cintas implementa una **simulación simplificada** del algoritmo clásico de suma binaria bit a bit. Aunque el código simula el concepto de 3 cintas, la implementación real usa una única cinta y realiza la suma mediante un algoritmo directo.
@@ -36,7 +36,7 @@ La máquina de 3 cintas implementa una **simulación simplificada** del algoritm
 
 ### Estados de la Máquina (3 Cintas)
 
-La máquina de 3 cintas simulada tiene los siguientes estados:
+La máquina de 3 cintas tiene los siguientes estados:
 
 1. **INICIO** (Estado inicial): Procesa la entrada
 2. **COPIAR_NUM2**: Prepara el segundo número  
@@ -148,10 +148,10 @@ La máquina de 1 cinta tiene estados más complejos para implementar el algoritm
 
 ## Comparación entre Versiones
 
-| Característica | 3 Cintas (Simulada) | 1 Cinta |
+| Característica | 3 Cintas  | 1 Cinta |
 |----------------|----------|---------|
 | **Separador** | `+` | `+` |
-| **Algoritmo** | Suma bit a bit clásica (simulada) | Implicit binary add (restar-sumar) |
+| **Algoritmo** | Suma bit a bit clásica | Implicit binary add (restar-sumar) |
 | **Estados** | 7 estados (conceptuales) | ~18 estados (reales) |
 | **Implementación** | Simulación simplificada | Máquina de Turing completa |
 | **Legibilidad** | Más intuitivo | Más complejo |
@@ -200,7 +200,7 @@ Ambas versiones incluyen modo interactivo donde puedes:
 
 ### Mismo Caso: 5 + 6 = 11 (101 + 110 = 1011)
 
-#### Versión 3 Cintas (Simulada): `101+110`
+#### Versión 3 Cintas: `101+110`
 
 ```
 MÁQUINA DE TURING - SUMA DE NÚMEROS BINARIOS (3 CINTAS)
@@ -228,7 +228,7 @@ Estado: ✓ CORRECTO
 ```
 
 **Análisis versión 3 cintas:**
-- ✅ Proceso directo: suma bit por bit (simulada)
+- ✅ Proceso directo: suma bit por bit
 - ✅ Solo 4 pasos principales (uno por bit + carry)
 - ✅ ~45 pasos totales incluyendo movimientos
 - ✅ Algoritmo intuitivo y eficiente
@@ -286,7 +286,7 @@ Estado: ✓ CORRECTO
 
 ### Comparación del Mismo Caso
 
-| Métrica | 3 Cintas Simulada (`101+110`) | 1 Cinta (`101+110`) |
+| Métrica | 3 Cintas  (`101+110`) | 1 Cinta (`101+110`) |
 |---------|---------------------|---------------------|
 | **Pasos totales** | ~45 | ~185 |
 | **Iteraciones** | 1 (suma directa) | 5 (tantas como valor de 101₂) | s
@@ -300,7 +300,7 @@ Estado: ✓ CORRECTO
 
 ### Complejidad Temporal
 
-**Versión 3 Cintas (Simulada):**
+**Versión 3 Cintas:**
 - **Tiempo**: O(n) donde n es la longitud del número más largo
 - **Pasos**: ~45 pasos para números de 3 bits
 - **Eficiencia**: Alta - procesa cada bit una vez (en simulación)
@@ -311,7 +311,7 @@ Estado: ✓ CORRECTO
 - **Eficiencia**: Menor - debe restar 1 del primer número repetidamente
 
 ### Complejidad Espacial
-- **3 Cintas (Simulada)**: O(n) - usa una sola cinta internamente
+- **3 Cintas**: O(n) - usa una sola cinta internamente
 - **1 Cinta**: O(n) - solo una cinta con operaciones más complejas
 
 ### Limitaciones
@@ -330,7 +330,7 @@ Estado: ✓ CORRECTO
 
 ## Estructura del Código
 
-### Versión 3 Cintas (Simulada): `MaquinaTuringSumaBinaria`
+### Versión 3 Cintas: `MaquinaTuringSumaBinaria`
 
 **Archivo**: `maquina_turing_suma_binaria_3cintas.py`
 
@@ -366,7 +366,7 @@ Estado: ✓ CORRECTO
 
 Ambas versiones pueden exportar sus algoritmos en formato compatible con **turingmachinesimulator.com**:
 
-### Versión 3 Cintas (Simulada)
+### Versión 3 Cintas
 **Nota**: Dado que esta versión es una simulación, no genera un archivo de transiciones reales. La lógica de suma se implementa directamente en código Python.
 
 ### Versión 1 Cinta
@@ -386,7 +386,7 @@ Genera archivo con las transiciones completas para 1 cinta.
 
 ## Conclusiones
 
-**Ventajas de la versión de 3 cintas (simulada):**
+**Ventajas de la versión de 3 cintas:**
 - ✅ Algoritmo más simple e intuitivo
 - ✅ Menos estados conceptuales (7 vs ~18)
 - ✅ Ejecución más rápida O(n)
