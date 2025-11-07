@@ -24,3 +24,11 @@ El trabajo práctico final de la materia Computación, algoritmos y estructuras 
 ## Ejercicio 1
 Implementar una máquina de Turing que puede sumar dos números binarios. Se desarrolló una máquina con 3 cintas. A su vez, se investigó y encontró información para realizar una versión con una única cinta, por lo que se implementó y comparó con la desarrollada.
 La resolución está en [Ejercicio 1](./Ejercicio1/Ejercicio1.md).
+
+### Ejemplos
+101+110 = 1011
+
+1. **Versión de 1 cinta**: 
+[suma_binaria_1_cinta_101+110.mov](https://drive.google.com/file/d/16Cg6Snkdgqv9JBCpi4O_rP3FWkof1WLe/view?usp=drive_link)
+2. **Versión de 1 cinta**: 
+[suma_binaria_3_cintas_101+110.mov](https://drive.google.com/file/d/1Tw2BcpaJVxhiYiwpn9wOpOkoh4mIuGJl/view?usp=drive_link)

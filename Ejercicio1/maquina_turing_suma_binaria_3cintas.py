@@ -21,7 +21,6 @@ Estados:
 - PREPARAR_SUMA: Posicionar cabezales para sumar
 - SUMAR_SIN_CARRY: Sumar bits sin acarreo previo
 - SUMAR_CON_CARRY: Sumar bits con acarreo
-- PROPAGAR_CARRY: Continuar propagando el acarreo
 - FIN: Estado final (suma completada)
 """
 
@@ -29,8 +28,7 @@ class MaquinaTuringSumaBinaria:
     def __init__(self):
         # Estados de la máquina
         self.estados = {'INICIO', 'COPIAR_NUM2', 'PREPARAR_SUMA', 
-                       'SUMAR_SIN_CARRY', 'SUMAR_CON_CARRY', 
-                       'PROPAGAR_CARRY', 'FIN'}
+                       'SUMAR_SIN_CARRY', 'SUMAR_CON_CARRY', 'FIN'}
         
         # Alfabeto de la cinta
         # Usaremos: 0, 1, + (separador), _ (blanco)
@@ -246,7 +244,7 @@ class MaquinaTuringSumaBinaria:
             print(f"✓ Archivo '{nombre_archivo}' generado exitosamente")
             print(f"  Ruta: {ruta_completa}")
             print(f"  Cintas: 3")
-            print(f"  Estados: 7 (INICIO, COPIAR_NUM2, PREPARAR_SUMA, SUMAR_SIN_CARRY, SUMAR_CON_CARRY, PROPAGAR_CARRY, FIN)")
+            print(f"  Estados: 6 (INICIO, COPIAR_NUM2, PREPARAR_SUMA, SUMAR_SIN_CARRY, SUMAR_CON_CARRY, FIN)")
             print(f"  Transiciones: {len(transiciones_3cintas)}")
             print(f"  Estado inicial: INICIO")
             print(f"  Estados finales: FIN")

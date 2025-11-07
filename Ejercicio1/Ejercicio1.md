@@ -43,8 +43,7 @@ La máquina de 3 cintas tiene los siguientes estados:
 3. **PREPARAR_SUMA**: Posiciona para la suma
 4. **SUMAR_SIN_CARRY**: Suma bit a bit sin carry
 5. **SUMAR_CON_CARRY**: Suma bit a bit con carry
-6. **PROPAGAR_CARRY**: Maneja el carry final
-7. **FIN** (Estado final): Termina la ejecución
+6. **FIN** (Estado final): Termina la ejecución
 
 **Nota**: En la implementación actual, la lógica de suma se ejecuta directamente en el método `_suma_binaria_mt_style()` que simula el comportamiento de una MT real.
 
@@ -152,7 +151,7 @@ La máquina de 1 cinta tiene estados más complejos para implementar el algoritm
 |----------------|----------|---------|
 | **Separador** | `+` | `+` |
 | **Algoritmo** | Suma bit a bit clásica | Implicit binary add (restar-sumar) |
-| **Estados** | 7 estados (conceptuales) | ~18 estados (reales) |
+| **Estados** | 6 estados | 18 estados |
 | **Implementación** | Simulación simplificada | Máquina de Turing completa |
 | **Legibilidad** | Más intuitivo | Más complejo |
 | **Archivo** | `maquina_turing_suma_binaria_3cintas.py` | `maquina_turing_suma_binaria_1cinta.py` |
@@ -218,7 +217,7 @@ Simulando suma binaria bit por bit:
   Paso 3: pos=1, bit1=1, bit2=1, carry_in=0, suma=2, resultado=0, carry_out=1
   Paso 4: Agregando carry final = 1
 --------------------------------------------------
-Ejecución terminada en ~45 pasos (estimados)
+Ejecución terminada en 17 pasos (estimados)
 Estado final: FIN
 Cinta final: 1011
 
@@ -269,7 +268,7 @@ Iteración 5: Restar 1 de 1 (→0) y sumar 1 a 1010 (→1011)
 Verificación: Primer número es 0 → Limpiar y terminar
   Paso 166-185: Limpieza de ceros y finalización...
 ------------------------------------------------------------
-Ejecución completada en 185 pasos
+Ejecución completada en 182 pasos
 Estado final: FIN
 Cinta final: 1011
 
@@ -281,52 +280,21 @@ Estado: ✓ CORRECTO
 **Análisis versión 1 cinta:**
 - ✅ Algoritmo matemático: 5 iteraciones (valor del primer número)
 - ⚠️ Cada iteración requiere ~35 pasos (resta + suma)
-- ⚠️ Total ~185 pasos (4x más que versión 3 cintas)
+- ⚠️ Total 182 pasos (4x más que versión 3 cintas)
 - ✅ Demuestra que 1 cinta es suficiente pero menos eficiente
 
 ### Comparación del Mismo Caso
 
 | Métrica | 3 Cintas  (`101+110`) | 1 Cinta (`101+110`) |
 |---------|---------------------|---------------------|
-| **Pasos totales** | ~45 | ~185 |
-| **Iteraciones** | 1 (suma directa) | 5 (tantas como valor de 101₂) | s
-| **Tiempo ejecución** | <1 segundo | <1 segundo |
-| **Legibilidad traza** | Alta | Media |
+| **Pasos totales** | 17 | 182 |
+| **Tiempo ejecución (backend)** | <1 segundo | <1 segundo |
+| **Legibilidad traza** | Alta | Baja |
 | **Resultado** | ✓ 1011 | ✓ 1011 |
 
 ---
 
-## Características Técnicas
 
-### Complejidad Temporal
-
-**Versión 3 Cintas:**
-- **Tiempo**: O(n) donde n es la longitud del número más largo
-- **Pasos**: ~45 pasos para números de 3 bits
-- **Eficiencia**: Alta - procesa cada bit una vez (en simulación)
-
-**Versión 1 Cinta:**
-- **Tiempo**: O(n²) donde n es el valor del primer número en decimal
-- **Pasos**: ~185 pasos para 5+6 (requiere 5 iteraciones completas)
-- **Eficiencia**: Menor - debe restar 1 del primer número repetidamente
-
-### Complejidad Espacial
-- **3 Cintas**: O(n) - usa una sola cinta internamente
-- **1 Cinta**: O(n) - solo una cinta con operaciones más complejas
-
-### Limitaciones
-- Los números deben ser válidos en binario (solo dígitos 0 y 1)
-- Los programas tienen un límite máximo de pasos (10,000) para evitar bucles infinitos
-- Las cintas se expanden automáticamente según sea necesario
-- La versión de 1 cinta es significativamente más lenta para números grandes
-
-### Verificación
-- Cada resultado se verifica contra una suma binaria tradicional (Python)
-- Se muestran las conversiones decimales para facilitar la verificación
-- Se incluyen casos extremos como suma de 1+1 y números grandes
-- Ambas versiones producen resultados correctos
-
----
 
 ## Estructura del Código
 
@@ -388,8 +356,7 @@ Genera archivo con las transiciones completas para 1 cinta.
 
 **Ventajas de la versión de 3 cintas:**
 - ✅ Algoritmo más simple e intuitivo
-- ✅ Menos estados conceptuales (7 vs ~18)
-- ✅ Ejecución más rápida O(n)
+- ✅ Menos estados (6 vs 18)
 - ✅ Más fácil de entender y depurar
 - ⚠️ Es una simulación simplificada, no una MT real de 3 cintas
 
