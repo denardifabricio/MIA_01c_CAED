@@ -27,8 +27,8 @@ class MaquinaTuring1Cinta:
         Args:
             entrada: string en formato 'a+b' donde a y b son números binarios
         """
-        self.cinta = list(' ' + entrada + ' ' * 20)  # Agregar espacios al inicio y final
-        self.cabezal = 1  # Empezar después del espacio inicial
+        self.cinta = list(' ' + entrada + ' ' * 20)  
+        self.cabezal = 1  
         self.estado = 'VERIFICAR_SI_CERO'
         self.entrada_original = entrada
         self.pasos = 0
@@ -493,7 +493,7 @@ def main():
             print(f"Cinta final completa: {resultado}")
             
         except KeyboardInterrupt:
-            print("\n¡Gracias por usar el simulador!")
+            print("\n¡Gracias por usar este simulador de máquina de Turing!")
             break
         except Exception as e:
             print(f"Error: {e}")

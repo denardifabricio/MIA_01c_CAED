@@ -8,7 +8,7 @@
 - Esp. Ing. Fabricio Denardi  
 
 **Docente:**
-- Dr. Camilo	Argoty
+- Dr. Camilo Argoty
 
 **Cohorte:**
 - MIA 01-2025
@@ -22,5 +22,5 @@ El trabajo práctico final de la materia Computación, algoritmos y estructuras 
 # Ejercicios
 
 ## Ejercicio 1
-Implementar una máquina de Turing que puede sumar dos números binarios.
+Implementar una máquina de Turing que puede sumar dos números binarios. Se desarrolló una máquina con 3 cintas. A su vez, se investigó y encontró información para realizar una versión con una única cinta, por lo que se implementó y comparó con la desarrollada.
 La resolución está en [Ejercicio 1](./Ejercicio1/Ejercicio1.md).

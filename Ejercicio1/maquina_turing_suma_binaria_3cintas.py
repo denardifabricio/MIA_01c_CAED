@@ -33,8 +33,8 @@ class MaquinaTuringSumaBinaria:
                        'PROPAGAR_CARRY', 'FIN'}
         
         # Alfabeto de la cinta
-        # Usaremos: 0, 1, + (separador), X (marcador temporal), _ (blanco)
-        self.alfabeto = {'0', '1', '+', 'X', 'Y', 'Z', '_'}
+        # Usaremos: 0, 1, + (separador), _ (blanco)
+        self.alfabeto = {'0', '1', '+', '_'}
         
         # Estado inicial
         self.estado_inicial = 'INICIO'
