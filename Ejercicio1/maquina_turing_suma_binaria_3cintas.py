@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Máquina de Turing de 1 Cinta para Suma Binaria
+Máquina de Turing de 13 cintas para Suma Binaria
 ==============================================
 
-Esta implementación simula una máquina de Turing de 1 cinta que suma
+Esta implementación simula una máquina de Turing de 3 cintas que suma
 dos números binarios.
 
 Formato de entrada: número1+número2
@@ -338,7 +338,7 @@ def main():
             mt.cargar_entrada(entrada_mt)
             resultado = mt.ejecutar()
             
-            # Conversiones para mostrar
+            # Conversiones para mostrar y asi comparar
             dec1 = int(entrada, 2)
             dec2 = int(entrada2, 2)
             dec_resultado = int(resultado, 2) if resultado != "0" else 0

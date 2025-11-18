@@ -9,7 +9,10 @@ Este proyecto implementa **dos versiones** de una máquina de Turing que suma n�
 
 Ambas máquinas toman como entrada dos números binarios en formato `a+b` y producen como salida la suma en formato binario.
 
-Se desarrolló completamente la versión de 3 cintas. Adicionalmente y por curiosidad del autor de este trabajo, se investigó la posibilidad de resolver el mismo problema utilizando 1 sola cinta. Basándose en la siguiente página [blog of Jay McCarthy](https://jeapostrophe.github.io/index.html), se construyó una máquina de 1 cinta para resolver el mismo problema y así comparar.
+Se desarrolló completamente la versión de 3 cintas. 
+
+
+Adicionalmente y por curiosidad del autor de este trabajo, se investigó la posibilidad de resolver el mismo problema utilizando 1 sola cinta. Basándose en la siguiente página [blog of Jay McCarthy](https://jeapostrophe.github.io/index.html), se construyó una máquina de 1 cinta para resolver el mismo problema y así comparar con la desarrollada por el alumno.
 
 ---
 
@@ -335,20 +338,32 @@ Estado: ✓ CORRECTO
 Ambas versiones pueden exportar sus algoritmos en formato compatible con **turingmachinesimulator.com**:
 
 ### Versión 3 Cintas
-**Nota**: Dado que esta versión es una simulación, no genera un archivo de transiciones reales. La lógica de suma se implementa directamente en código Python.
+```python
+mt = MaquinaTuringSumaBinaria()
+mt.exportar_algoritmo_txt("suma_binaria_3cintas.txt")
+```
+Genera archivo con 30 transiciones para una máquina de Turing de 3 cintas.
+
+**Características del archivo exportado:**
+- Compatible con turingmachinesimulator.com
+- 3 cintas de trabajo
+- 6 estados (INICIO, COPIAR_NUM2, PREPARAR_SUMA, SUMAR_SIN_CARRY, SUMAR_CON_CARRY, FIN)
+- 30 transiciones que cubren todos los casos de suma binaria
+- Formato: `estado,símbolo_cinta1,símbolo_cinta2,símbolo_cinta3`
 
 ### Versión 1 Cinta
 ```python
 mt = MaquinaTuring1Cinta("1+1")
-mt.exportar_algoritmo("algoritmo_1cinta_pseudocodigo.txt")
+mt.exportar_algoritmo("suma_binaria_1cinta.txt")
 ```
 Genera archivo con las transiciones completas para 1 cinta.
 
-**Formato del archivo exportado (versión 1 cinta):**
+**Formato del archivo exportado (ambas versiones):**
 - Compatible con turingmachinesimulator.com
 - Incluye comentarios descriptivos
 - Define estados inicial y final
 - Lista todas las transiciones estado por estado
+- Formato estándar para el simulador online
 
 ---
 
