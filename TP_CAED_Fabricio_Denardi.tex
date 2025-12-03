@@ -1,0 +1,103 @@
+\documentclass[12pt,a4paper]{article}
+
+% Paquetes necesarios
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+
+% Configuración de márgenes
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+% Configuración de hipervínculos
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    citecolor=blue
+}
+
+% Título del documento
+\title{
+    \textbf{Computación, algoritmos y estructuras de datos\\
+    Trabajo Práctico Final}
+}
+
+\author{
+    \textbf{Autor:}\\
+    Esp. Ing. Fabricio Denardi\\[0.5cm]
+    \textbf{Docente:}\\
+    Dr. Camilo Argoty\\[0.5cm]
+    \textbf{Cohorte:}\\
+    MIA 01-2025
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Definición}
+El trabajo práctico final de la materia Computación, algoritmos y estructuras de datos de la Maestría en Inteligencia artificial (MIA) de la Universidad de Buenos Aires (UBA) consiste en la resolución de una serie de ejercicios relacionados con la temática vista.
+
+\vspace{0.5cm}
+\noindent \textbf{Repositorio del proyecto:} \url{https://github.com/denardifabricio/MIA_01c_CAED}
+
+\section{Ejercicios}
+
+\subsection{Ejercicio 1}
+Implementar una máquina de Turing que puede sumar dos números binarios. Se desarrolló una máquina con 3 cintas.
+
+A su vez, se investigó y encontró información para realizar una versión con una única cinta, por lo que se implementó y comparó con la desarrollada por el alumno.
+
+La resolución está en \href{https://github.com/denardifabricio/MIA_01c_CAED/tree/main/Ejercicio1/Ejercicio1.md}{Ejercicio 1}.
+
+\subsubsection{Ejemplos}
+Para el caso $101 + 110 = 1011$:
+
+\begin{enumerate}
+    \item \textbf{Versión de 1 cinta:} \\
+    \url{https://drive.google.com/file/d/16Cg6Snkdgqv9JBCpi4O_rP3FWkof1WLe/view?usp=drive_link}
+    
+    \item \textbf{Versión de 3 cintas:} \\
+    \url{https://drive.google.com/file/d/1Tw2BcpaJVxhiYiwpn9wOpOkoh4mIuGJl/view?usp=drive_link}
+\end{enumerate}
+
+\subsection{Ejercicio 2}
+\textbf{Conteo de inversiones:} Sea $A$ un array de los números $1, 2, \ldots, n$ en cualquier orden. Una inversión es una pareja $(i, j)$ de índices del array, de forma que $i < j$ pero $A[i] > A[j]$. Encuentre un algortimo tipo divide y vencerás que cuente el número de inversiones en un array $A$. Determine su complejidad en tiempo y en memoria. Implemente dicho algoritmo en su lenguaje de programación favorito con 3 arrays de ejemplo de longitud 10.
+
+La resolución está en \href{https://github.com/denardifabricio/MIA_01c_CAED/tree/main/Ejercicio2/Ejercicio2.md}{Ejercicio 2}.
+
+\subsection{Ejercicio 3}
+En este ejercicio se aplicarán conceptos fundamentales de algoritmos y estructuras de datos en el contexto de la bioinformática, específicamente en la alineación global de secuencias de nucleótidos. El objetivo es comprender cómo los algoritmos permiten comparar secuencias biológicas para identificar similitudes, mutaciones y relaciones evolutivas.
+
+La resolución está en \href{https://github.com/denardifabricio/MIA_01c_CAED/tree/main/Ejercicio3/Ejercicio3.md}{Ejercicio 3}.
+
+\subsubsection{A modo de resumen: resolución}
+\begin{itemize}
+    \item \textbf{Un informe en PDF con la parte teórica y una explicación breve del código implementado.}
+    
+    Si bien se solicitó 1 o 2 páginas, dado que lo hice con \LaTeX{} (suelen ser más páginas comparadas con un word) y quise hacerlo más completo, el informe posee más páginas.
+    
+    El informe teórico puede verse \href{https://github.com/denardifabricio/MIA_01c_CAED/tree/main/Ejercicio3/Informe.pdf}{aquí}.
+    
+    \item \textbf{El código fuente debidamente comentado.}
+    
+    El código fuente puede verse en \href{https://github.com/denardifabricio/MIA_01c_CAED/tree/main/Ejercicio3/needleman_wunsch.py}{needleman\_wunsch.py}
+    
+    \item \textbf{Una captura o impresión de los alineamientos generados por el programa.}
+    
+    Se deja un video con la ejecución del algoritmo \href{https://drive.google.com/file/d/1kL5Bx45YSIY701X8oVuYyxWKSQZOOvHc/view?usp=sharing}{aquí}.
+\end{itemize}
+
+\end{document}
