@@ -2,10 +2,10 @@
 
 ## Descripción General
 
-Este proyecto implementa **dos versiones** de una máquina de Turing que suma números binarios:
+Este proyecto implementa dos versiones de una máquina de Turing que suma números binarios:
 
-1. **Versión de 3 cintas**: Implementación simplificada que simula suma bit a bit
-2. **Versión de 1 cinta**: Implementación basada en el algoritmo "implicit-binary-add"
+1. Versión de 3 cintas: implementación simplificada que simula suma bit a bit
+2. Versión de 1 cinta: implementación basada en el algoritmo "implicit-binary-add"
 
 Ambas máquinas toman como entrada dos números binarios en formato `a+b` y producen como salida la suma en formato binario.
 
@@ -19,36 +19,36 @@ Adicionalmente y por curiosidad del autor de este trabajo, se investigó la posi
 ## Ejemplos
 101+110 = 1011
 
-1. **Versión de 1 cinta**: 
+1. Versión de 1 cinta: 
 [suma_binaria_1_cinta_101+110.mov](https://drive.google.com/file/d/16Cg6Snkdgqv9JBCpi4O_rP3FWkof1WLe/view?usp=drive_link)
-2. **Versión de 1 cinta**: 
+2. Versión de 1 cinta: 
 [suma_binaria_3_cintas_101+110.mov](https://drive.google.com/file/d/1Tw2BcpaJVxhiYiwpn9wOpOkoh4mIuGJl/view?usp=drive_link)
 
 ## Versión de 3 Cintas 
 
 ### Descripción
-La máquina de 3 cintas implementa una **simulación simplificada** del algoritmo clásico de suma binaria bit a bit. Aunque el código simula el concepto de 3 cintas, la implementación real usa una única cinta y realiza la suma mediante un algoritmo directo.
+La máquina de 3 cintas implementa una simulación simplificada del algoritmo clásico de suma binaria bit a bit. Aunque el código simula el concepto de 3 cintas, la implementación real usa una única cinta y realiza la suma mediante un algoritmo directo.
 
 ### Formato de Entrada
-- **Entrada**: `número1+número2`
-- **Ejemplo**: `101+110` (representa 5 + 6 en decimal)
+- Entrada: `número1+número2`
+- Ejemplo: `101+110` (representa 5 + 6 en decimal)
 
 ### Formato de Salida
-- **Salida**: `resultado`
-- **Ejemplo**: `1011` (representa 11 en decimal)
+- Salida: `resultado`
+- Ejemplo: `1011` (representa 11 en decimal)
 
 ### Estados de la Máquina (3 Cintas)
 
 La máquina de 3 cintas tiene los siguientes estados:
 
-1. **INICIO** (Estado inicial): Procesa la entrada
-2. **COPIAR_NUM2**: Prepara el segundo número  
-3. **PREPARAR_SUMA**: Posiciona para la suma
-4. **SUMAR_SIN_CARRY**: Suma bit a bit sin carry
-5. **SUMAR_CON_CARRY**: Suma bit a bit con carry
-6. **FIN** (Estado final): Termina la ejecución
+1. INICIO (Estado inicial): procesa la entrada
+2. COPIAR_NUM2: prepara el segundo número  
+3. PREPARAR_SUMA: posiciona para la suma
+4. SUMAR_SIN_CARRY: suma bit a bit sin carry
+5. SUMAR_CON_CARRY: suma bit a bit con carry
+6. FIN (Estado final): termina la ejecución
 
-**Nota**: En la implementación actual, la lógica de suma se ejecuta directamente en el método `_suma_binaria_mt_style()` que simula el comportamiento de una MT real.
+Nota: En la implementación actual, la lógica de suma se ejecuta directamente en el método `_suma_binaria_mt_style()` que simula el comportamiento de una MT real.
 
 ### Alfabeto de la Cinta (3 Cintas)
 
@@ -60,10 +60,10 @@ La máquina de 3 cintas tiene los siguientes estados:
 
 La máquina implementa el algoritmo clásico de suma binaria:
 
-1. **Cinta 1**: Almacena el primer número
-2. **Cinta 2**: Almacena el segundo número
-3. **Cinta 3**: Almacena el resultado
-4. **Proceso**:
+1. Cinta 1: almacena el primer número
+2. Cinta 2: almacena el segundo número
+3. Cinta 3: almacena el resultado
+4. Proceso:
    - Lee ambos números de derecha a izquierda
    - Suma bit a bit con tabla de verdad:
      - 0 + 0 = 0 (sin carry)
@@ -78,63 +78,63 @@ La máquina implementa el algoritmo clásico de suma binaria:
 ## Versión de 1 Cinta
 
 ### Descripción
-La máquina de 1 cinta implementa el algoritmo **"implicit-binary-add"**, que suma mediante un enfoque diferente:
-- **Repetir**: Restar 1 del primer número y sumar 1 al segundo número
-- **Hasta**: Que el primer número sea cero
-- **Resultado**: El segundo número contiene la suma final
+La máquina de 1 cinta implementa el algoritmo "implicit-binary-add", que suma mediante un enfoque diferente:
+- Repetir: restar 1 del primer número y sumar 1 al segundo número
+- Hasta: que el primer número sea cero
+- Resultado: el segundo número contiene la suma final
 
 ### Formato de Entrada
-- **Entrada**: `número1+número2`
-- **Ejemplo**: `11+1` (representa 3 + 1 en decimal)
+- Entrada: `número1+número2`
+- Ejemplo: `11+1` (representa 3 + 1 en decimal)
 
 ### Formato de Salida
-- **Salida**: `resultado`
-- **Ejemplo**: `100` (representa 4 en decimal, resultado de 3+1)
+- Salida: `resultado`
+- Ejemplo: `100` (representa 4 en decimal, resultado de 3+1)
 
 ### Estados de la Máquina (1 Cinta)
 La máquina de 1 cinta tiene estados más complejos para implementar el algoritmo:
 
-1. **VERIFICAR_SI_CERO**: Verifica si el primer número es cero
-2. **BUSCAR_IZQ_RESTAR1**: Posiciona al inicio para restar 1
-3. **RESTAR1_COMPLEMENTO**: Complemento a 1 del primer número
-4. **RESTAR1_SUMAR1_CEROS_HASTA_0**: Suma 1 después del complemento
-5. **RESTAR1_SUMAR1_BUSCAR_FIN**: Busca el final para segundo complemento
-6. **RESTAR1_COMPLEMENTO_DER**: Segundo complemento a 1 (completa la resta)
-7. **BUSCAR_DER_SUMAR1**: Va al segundo número para sumar 1
-8. **SUMAR1_BUSCAR_FIN**: Busca el final del segundo número
-9. **SUMAR1_CEROS_HASTA_0**: Suma 1 al segundo número
-10. **SUMAR1_NECESITA_NUEVO_DIGITO**: Maneja overflow a nuevo dígito
-11. **SUMAR1_CARRY0_DESPLAZAR**, **SUMAR1_CARRY1_DESPLAZAR**: Manejo de carry
-12. **SUMAR1_ESCRIBIR_ACARREO_Y_RETORNAR**: Escribe el carry final
-13. **SUMAR1_REEMPLAZAR_X_CON_1**: Reemplaza marcador temporal
-14. **BUSCAR_IZQ_CONTINUAR**: Vuelve al inicio para repetir el ciclo
-15. **BUSCAR_IZQ_CERO**: Limpia ceros a la izquierda del resultado
-16. **BUSCAR_INICIO**: Encuentra el inicio del resultado
-17. **MOVER_DER_UNA_VEZ**: Ajuste final de posición
-18. **FIN**: Estado final
+1. VERIFICAR_SI_CERO: verifica si el primer número es cero
+2. BUSCAR_IZQ_RESTAR1: posiciona al inicio para restar 1
+3. RESTAR1_COMPLEMENTO: complemento a 1 del primer número
+4. RESTAR1_SUMAR1_CEROS_HASTA_0: suma 1 después del complemento
+5. RESTAR1_SUMAR1_BUSCAR_FIN: busca el final para segundo complemento
+6. RESTAR1_COMPLEMENTO_DER: segundo complemento a 1 (completa la resta)
+7. BUSCAR_DER_SUMAR1: va al segundo número para sumar 1
+8. SUMAR1_BUSCAR_FIN: busca el final del segundo número
+9. SUMAR1_CEROS_HASTA_0: suma 1 al segundo número
+10. SUMAR1_NECESITA_NUEVO_DIGITO: maneja overflow a nuevo dígito
+11. SUMAR1_CARRY0_DESPLAZAR, SUMAR1_CARRY1_DESPLAZAR: manejo de carry
+12. SUMAR1_ESCRIBIR_ACARREO_Y_RETORNAR: escribe el carry final
+13. SUMAR1_REEMPLAZAR_X_CON_1: reemplaza marcador temporal
+14. BUSCAR_IZQ_CONTINUAR: vuelve al inicio para repetir el ciclo
+15. BUSCAR_IZQ_CERO: limpia ceros a la izquierda del resultado
+16. BUSCAR_INICIO: encuentra el inicio del resultado
+17. MOVER_DER_UNA_VEZ: ajuste final de posición
+18. FIN: estado final
 
 ### Algoritmo de Suma (1 Cinta)
 
-**Algoritmo "Implicit Binary Add":**
+Algoritmo "Implicit Binary Add":
 
-1. **Verificar si primer número es cero**:
+1. Verificar si primer número es cero:
    - Si es cero → limpiar y terminar
    - Si no es cero → continuar
 
-2. **Restar 1 del primer número** (usando complemento a uno doble):
+2. Restar 1 del primer número (usando complemento a uno doble):
    - Complemento a 1 de todo el número
    - Sumar 1 (cambiar 1s a 0s hasta encontrar un 0, luego cambiar ese 0 a 1)
    - Complemento a 1 nuevamente
 
-3. **Sumar 1 al segundo número**:
+3. Sumar 1 al segundo número:
    - Ir al final del segundo número
    - Cambiar 1s a 0s de derecha a izquierda hasta encontrar un 0
    - Cambiar ese 0 a 1
    - Si hay overflow, insertar nuevo dígito
 
-4. **Repetir** pasos 1-3 hasta que el primer número sea cero
+4. Repetir pasos 1-3 hasta que el primer número sea cero
 
-5. **Limpiar y presentar resultado**:
+5. Limpiar y presentar resultado:
    - Eliminar el primer número (ahora en ceros)
    - El segundo número contiene la suma
 
@@ -152,12 +152,12 @@ La máquina de 1 cinta tiene estados más complejos para implementar el algoritm
 
 | Característica | 3 Cintas  | 1 Cinta |
 |----------------|----------|---------|
-| **Separador** | `+` | `+` |
-| **Algoritmo** | Suma bit a bit clásica | Implicit binary add (restar-sumar) |
-| **Estados** | 6 estados | 18 estados |
-| **Implementación** | Simulación simplificada | Máquina de Turing completa |
-| **Legibilidad** | Más intuitivo | Más complejo |
-| **Archivo** | `maquina_turing_suma_binaria_3cintas.py` | `maquina_turing_suma_binaria_1cinta.py` |
+| Separador | `+` | `+` |
+| Algoritmo | Suma bit a bit clásica | Implicit binary add (restar-sumar) |
+| Estados | 6 estados | 18 estados |
+| Implementación | Simulación simplificada | Máquina de Turing completa |
+| Legibilidad | Más intuitivo | Más complejo |
+| Archivo | `maquina_turing_suma_binaria_3cintas.py` | `maquina_turing_suma_binaria_1cinta.py` |
 
 ---
 
@@ -175,7 +175,7 @@ python3 maquina_turing_suma_binaria_1cinta.py
 
 ### Casos de Prueba Incluidos
 
-**Ambas versiones utilizan el mismo formato de entrada:**
+Ambas versiones utilizan el mismo formato de entrada:
 
 | Caso | Formato (a+b) | Operación | Resultado |
 |------|----------------|-----------|-----------|
@@ -194,7 +194,7 @@ Ambas versiones incluyen modo interactivo donde puedes:
 3. Ver el resultado de la suma
 4. Ver las conversiones a decimal para verificar
 
-**Nota**: Ambas versiones usan formato `a+b` (ej: `101+110`)
+Nota: Ambas versiones usan formato `a+b` (ej: `101+110`)
 
 ---
 
@@ -229,11 +229,11 @@ Esperado:  1011 (decimal: 11)
 Estado: ✓ CORRECTO
 ```
 
-**Análisis versión 3 cintas:**
-- ✅ Proceso directo: suma bit por bit
-- ✅ Solo 4 pasos principales (uno por bit + carry)
-- ✅ ~45 pasos totales incluyendo movimientos
-- ✅ Algoritmo intuitivo y eficiente
+Análisis versión 3 cintas:
+- Proceso directo: suma bit por bit
+- Solo 4 pasos principales (uno por bit + carry)
+- ~45 pasos totales incluyendo movimientos
+- Algoritmo intuitivo y eficiente
 
 #### Versión 1 Cinta: `101+110`
 
@@ -280,20 +280,20 @@ Esperado:  1011 (decimal: 11)
 Estado: ✓ CORRECTO
 ```
 
-**Análisis versión 1 cinta:**
-- ✅ Algoritmo matemático: 5 iteraciones (valor del primer número)
-- ⚠️ Cada iteración requiere ~35 pasos (resta + suma)
-- ⚠️ Total 182 pasos (4x más que versión 3 cintas)
-- ✅ Demuestra que 1 cinta es suficiente pero menos eficiente
+Análisis versión 1 cinta:
+- Algoritmo matemático: 5 iteraciones (valor del primer número)
+- Cada iteración requiere ~35 pasos (resta + suma)
+- Total 182 pasos (4x más que versión 3 cintas)
+- Demuestra que 1 cinta es suficiente pero menos eficiente
 
 ### Comparación del Mismo Caso
 
 | Métrica | 3 Cintas  (`101+110`) | 1 Cinta (`101+110`) |
 |---------|---------------------|---------------------|
-| **Pasos totales** | 17 | 182 |
-| **Tiempo ejecución (backend)** | <1 segundo | <1 segundo |
-| **Legibilidad traza** | Alta | Baja |
-| **Resultado** | ✓ 1011 | ✓ 1011 |
+| Pasos totales | 17 | 182 |
+| Tiempo ejecución (backend) | <1 segundo | <1 segundo |
+| Legibilidad traza | Alta | Baja |
+| Resultado | ✓ 1011 | ✓ 1011 |
 
 ---
 
@@ -303,22 +303,22 @@ Estado: ✓ CORRECTO
 
 ### Versión 3 Cintas: `MaquinaTuringSumaBinaria`
 
-**Archivo**: `maquina_turing_suma_binaria_3cintas.py`
+Archivo: `maquina_turing_suma_binaria_3cintas.py`
 
-**Métodos principales:**
+Métodos principales:
 - `__init__()`: Inicializa la máquina con estados y alfabeto
 - `cargar_entrada(entrada)`: Carga la cadena en la cinta (formato `a+b`)
 - `ejecutar(max_pasos)`: Ejecuta la máquina hasta completarse
 - `obtener_resultado()`: Extrae el resultado final de la cinta
 - `_suma_binaria_mt_style()`: Simula la suma bit a bit
 
-**Nota**: Esta versión es una **simulación simplificada** que muestra el concepto de suma binaria, no una implementación real de Máquina de Turing con 3 cintas.
+Nota: Esta versión es una simulación simplificada que muestra el concepto de suma binaria, no una implementación real de Máquina de Turing con 3 cintas.
 
 ### Versión 1 Cinta: `MaquinaTuring1Cinta`
 
-**Archivo**: `maquina_turing_suma_binaria_1cinta.py`
+Archivo: `maquina_turing_suma_binaria_1cinta.py`
 
-**Métodos principales:**
+Métodos principales:
 - `__init__(entrada)`: Inicializa con la entrada (formato `a+b`)
 - `_crear_tabla_transiciones()`: Define todas las transiciones del algoritmo
 - `ejecutar_paso()`: Ejecuta un solo paso de la máquina
@@ -327,7 +327,7 @@ Estado: ✓ CORRECTO
 - `exportar_algoritmo()`: Exporta para turingmachinesimulator.com
 - `_comentario_estado(estado)`: Documentación de cada estado
 
-**Funciones auxiliares (ambas versiones):**
+Funciones auxiliares (ambas versiones):
 - `suma_binaria_tradicional(bin1, bin2)`: Verificación usando Python
 - `main()`: Función principal con casos de prueba y modo interactivo
 
@@ -344,7 +344,7 @@ mt.exportar_algoritmo_txt("suma_binaria_3cintas.txt")
 ```
 Genera archivo con 30 transiciones para una máquina de Turing de 3 cintas.
 
-**Características del archivo exportado:**
+Características del archivo exportado:
 - Compatible con turingmachinesimulator.com
 - 3 cintas de trabajo
 - 6 estados (INICIO, COPIAR_NUM2, PREPARAR_SUMA, SUMAR_SIN_CARRY, SUMAR_CON_CARRY, FIN)
@@ -358,7 +358,7 @@ mt.exportar_algoritmo("suma_binaria_1cinta.txt")
 ```
 Genera archivo con las transiciones completas para 1 cinta.
 
-**Formato del archivo exportado (ambas versiones):**
+Formato del archivo exportado (ambas versiones):
 - Compatible con turingmachinesimulator.com
 - Incluye comentarios descriptivos
 - Define estados inicial y final
@@ -369,20 +369,20 @@ Genera archivo con las transiciones completas para 1 cinta.
 
 ## Conclusiones
 
-**Ventajas de la versión de 3 cintas:**
-- ✅ Algoritmo más simple e intuitivo
-- ✅ Menos estados (6 vs 18)
-- ✅ Más fácil de entender y depurar
-- ⚠️ Es una simulación simplificada, no una MT real de 3 cintas
+Ventajas de la versión de 3 cintas:
+- Algoritmo más simple e intuitivo
+- Menos estados (6 vs 18)
+- Más fácil de entender y depurar
+- Es una simulación simplificada, no una MT real de 3 cintas
 
-**Ventajas de la versión de 1 cinta:**
-- ✅ Implementación real de Máquina de Turing
-- ✅ Demuestra capacidad equivalente con una sola cinta
-- ✅ Implementa algoritmo matemático interesante (implicit-add)
-- ✅ Ejemplo de máquina de Turing más "realista" (limitaciones de hardware)
-- ✅ Mayor complejidad algorítmica - educativamente valioso
-- ✅ Tabla de transiciones completa y exportable
+Ventajas de la versión de 1 cinta:
+- Implementación real de Máquina de Turing
+- Demuestra capacidad equivalente con una sola cinta
+- Implementa algoritmo matemático interesante (implicit-add)
+- Ejemplo de máquina de Turing más "realista" (limitaciones de hardware)
+- Mayor complejidad algorítmica - educativamente valioso
+- Tabla de transiciones completa y exportable
 
-**Ambas versiones demuestran** que las máquinas de Turing pueden realizar operaciones aritméticas básicas, confirmando su poder computacional universal. La versión de 1 cinta es una implementación pura de MT, mientras que la versión de 3 cintas es una simulación didáctica del concepto.
+Ambas versiones demuestran que las máquinas de Turing pueden realizar operaciones aritméticas básicas, confirmando su poder computacional universal. La versión de 1 cinta es una implementación pura de MT, mientras que la versión de 3 cintas es una simulación didáctica del concepto.
 
 
