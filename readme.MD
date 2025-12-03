@@ -39,4 +39,21 @@ La resolución está en [Ejercicio 1](./Ejercicio1/Ejercicio1.md).
 Conteo de inversiones: Sea A un array de los números 1, 2, ..., n en cualquier orden. Una inversión es una pareja (i, j) de índices del array, de forma que i < j pero A[i] > A[j]. Encuentre un algortimo tipo divide y vencerás que cuente el número de inversiones en un array A. Determine su complejidad en tiempo y en memoria. Implemente dicho algoritmo en su lenguaje de programación favorito con 3 arrays de ejemplo de longitud 10.
 
 
-La resolución está en [Ejercicio 2](./Ejercicio1/Ejercicio2.md).
+La resolución está en [Ejercicio 2](./Ejercicio2/Ejercicio2.md).
+
+## Ejercicio 3
+En este ejercicio se aplicarán conceptos fundamentales de algoritmos y estructuras de datos en el contexto de la bioinformática, específicamente en la alineación global de secuencias de nucleótidos. El objetivo es comprender cómo los algoritmos permiten comparar secuencias biológicas para identificar similitudes, mutaciones y relaciones evolutivas.
+
+
+La resolución está en [Ejercicio 3](./Ejercicio3/Ejercicio3.md).
+
+
+### A modo de resumen: resolución
+- Un informe en PDF con la parte teórica y una explicación breve del código implementado.
+El informe teórico puede verse [aquí](./Ejercicio3/Informe.pdf).
+
+- El código fuente debidamente comentado.
+El código fuente puede verse en [needleman_winsch.py](./Ejercicio3/needleman_wunsch.py)
+
+- Una captura o impresión de los alineamientos generados por el programa.
+Se deja un video con la ejecución del algoritmo [aquí](https://drive.google.com/file/d/1kL5Bx45YSIY701X8oVuYyxWKSQZOOvHc/view?usp=sharing).

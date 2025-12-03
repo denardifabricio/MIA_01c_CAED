@@ -1,1 +1,8 @@
 .nenv
+*.aux
+*.fls
+*.log
+*.out
+*.toc
+*.fdb_latexmk
+*.synctex.gz

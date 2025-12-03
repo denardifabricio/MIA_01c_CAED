@@ -91,16 +91,37 @@ Esta es una pregunta que fue planteada antes de elegir el algoritmo base para en
 
 #### Complejidad Temporal: **O(n log n)**
 
-**Justificación:**
-- El algoritmo sigue la misma estructura que Merge Sort.
-- En cada nivel, procesamos todos los `n` elementos exactamente una vez durante la fase de mezcla.
-- La recurrencia es: `T(n) = 2T(n/2) + O(n)`
-- Por el teorema maestro: `T(n) = O(n log n)`
+**Justificación mediante el Teorema Fundamental (Master Theorem):**
 
-Desglose:
-- Hay `log n` niveles de recursión (cada vez dividimos el array a la mitad).
-- En cada nivel, realizamos `O(n)` trabajo para mezclar los subarrays.
-- Total: `O(n log n)`
+La recurrencia del algoritmo es:
+```
+T(n) = 2T(n/2) + O(n)
+```
+
+Donde:
+- Dividimos el problema en **2 subproblemas** (mitad izquierda y derecha)
+- Cada subproblema es de tamaño **n/2**
+- El trabajo de combinar (merge y conteo) es **O(n)**
+
+**Aplicando el Teorema Fundamental:**
+
+Tenemos la forma: `T(n) = aT(n/b) + O(n^d)`
+
+Identificamos los parámetros:
+- **a = 2** (número de subproblemas recursivos)
+- **b = 2** (factor de reducción del tamaño)
+- **d = 1** (exponente del trabajo adicional, ya que O(n) = O(n^1))
+
+Calculamos: **a = 2** y **b^d = 2^1 = 2**
+
+Como **a = b^d** (2 = 2), estamos en el caso 2 del teorema:
+
+**T(n) = O(n^d log n) = O(n^1 log n) = O(n log n)**
+
+**Desglose intuitivo:**
+- Hay **log n** niveles de recursión (cada vez dividimos el array a la mitad hasta llegar a tamaño 1)
+- En cada nivel, procesamos **n** elementos en total durante la fase de mezcla
+- Total: **O(n log n)**
 
 #### Complejidad Memoria: **O(n)**
 
