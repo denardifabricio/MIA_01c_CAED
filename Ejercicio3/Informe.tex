@@ -3,7 +3,6 @@
 \usepackage[spanish]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-\usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{hyperref}
@@ -49,83 +48,83 @@
 
 \subsection{Secuencias de Nucleótidos y su Importancia}
 
-Una secuencia de nucleótidos es una cadena lineal de nucleótidos que constituyen el ADN o ARN de un organismo. En el caso del ADN, está compuesta por cuatro bases nitrogenadas: adenina (A), timina (T), guanina (G) y citosina (C). En el ARN, la timina es reemplazada por uracilo (U). Estas secuencias contienen la informacion genética que codifica para proteinas y regula procesos celulares fundamentales.
+Cuando hablamos de secuencias de nucleótidos, nos referimos básicamente a esas cadenas de "letras" que forman el ADN o ARN de cualquier organismo vivo. En el ADN encontramos cuatro bases nitrogenadas principales: adenina (A), timina (T), guanina (G) y citosina (C). Por su parte, el ARN es bastante parecido, solo que la timina es sustituida por uracilo (U). Lo interesante es que estas secuencias no son solo combinaciones aleatorias, sino que guardan toda la información genética necesaria para producir proteínas y mantener funcionando las células.
 
-La comparacion de secuencias de nucleótidos es crucial en biologia molecular por varias razones:
+¿Por qué es tan importante comparar estas secuencias? En biología molecular resulta fundamental por varios motivos:
 
 \begin{itemize}
-    \item Relaciones evolutivas: secuencias similares sugieren ancestros comunes y permiten construir arboles filogenéticos.
-    \item Identificación de genes: permite encontrar genes homólogos en diferentes organismos y predecir sus funciones.
-    \item Diagnóstico médico: ayuda a identificar mutaciones asociadas a enfermedades geneticas.
-    \item Biotecnología: facilita el diseño de primers para PCR, desarrollo de vacunas y terapias génicas.
+    \item Cuando dos organismos tienen secuencias parecidas, es muy probable que compartan un ancestro común. Esto nos permite armar esos árboles evolutivos que muestran cómo están relacionadas las especies.
+    \item Si encontramos genes similares en organismos distintos, podemos predecir qué función tienen incluso sin haberlos estudiado directamente.
+    \item En medicina, comparar secuencias nos ayuda muchísimo para detectar mutaciones que causan enfermedades hereditarias.
+    \item Para la biotecnología moderna, esto es clave: desde diseñar los primers que usamos en PCR hasta desarrollar nuevas vacunas o terapias génicas.
 \end{itemize}
 
 \subsection{Alineación de Secuencias}
 
-La alineación de secuencias es el proceso de disponer dos o más secuencias biológicas (ADN, ARN o proteínas) de manera que se identifiquen regiones de similitud que puedan indicar relaciones funcionales, estructurales o evolutivas entre ellas.
+Alinear secuencias significa organizarlas de tal manera que podamos identificar qué partes se parecen entre sí. No es simplemente ponerlas una al lado de la otra, sino encontrar la mejor forma de disponerlas para ver patrones que nos digan algo sobre su relación evolutiva o funcional.
 
 \subsubsection{Tipos de Alineación}
 
-\paragraph{Alineación Global:} compara las secuencias completas de principio a fin. Es útil cuando las secuencias tienen longitudes similares y se espera que sean homólogas en toda su extensión. El algoritmo de Needleman-Wunsch implementa este tipo de alineación.
+\paragraph{Alineación Global:} Aquí comparamos las secuencias completas, desde el primer nucleótido hasta el último. Funciona mejor cuando las secuencias tienen tamaños parecidos y creemos que están relacionadas en toda su longitud. El algoritmo de Needleman-Wunsch, que es el que vamos a usar en este trabajo, hace precisamente esto.
 
-\paragraph{Alineación Local:} identifica regiones de similitud dentro de secuencias más largas, sin necesidad de alinear las secuencias completas. Es útil cuando solo dominios o regiones especificas son similares. El algoritmo de Smith-Waterman implementa este enfoque.
+\paragraph{Alineación Local:} A veces no nos interesa comparar todo, sino buscar regiones específicas que sean similares dentro de secuencias más largas. Es útil cuando sabemos que solo ciertos dominios o fragmentos son parecidos. Para esto existe el algoritmo de Smith-Waterman.
 
 \subsubsection{Elementos de un Alineamiento}
 
 \begin{itemize}
-    \item Coincidencias (matches): posiciones donde los nucleótidos de ambas secuencias son identicos. Indican conservación evolutiva.
+    \item Coincidencias (matches): son esas posiciones donde los nucleótidos de ambas secuencias son exactamente iguales. Cuando vemos muchas coincidencias, generalmente significa que esa región se ha conservado bastante bien a lo largo de la evolución, probablemente porque es importante funcionalmente.
     
-    \item Desajustes (mismatches): posiciones donde los nucleótidos difieren. Pueden representar mutaciones puntuales (sustituciones) ocurridas durante la evolucion.
+    \item Desajustes (mismatches): aquí es donde los nucleótidos difieren. Podría tratarse de mutaciones puntuales que ocurrieron en algún momento de la historia evolutiva de estas secuencias. No siempre son "malas", a veces estas diferencias son las que generan diversidad.
     
-    \item Huecos (gaps): representan inserciones o eliminaciones (indels) en una secuencia respecto a la otra. Se introducen para optimizar el alineamiento y reflejan eventos evolutivos de inserción o eliminación de nucleótidos.
+    \item Huecos (gaps): estos representan lugares donde parece que se insertó o eliminó algo en una de las secuencias respecto a la otra. Los introducimos estratégicamente durante el alineamiento para que todo encaje mejor. En términos evolutivos, reflejan eventos de inserción o eliminación de nucleótidos que pueden haber ocurrido hace millones de años.
 \end{itemize}
 
 \subsection{Modelo de Puntuación}
 
-El modelo de puntuación define el "costo" relativo de diferentes eventos evolutivos y determina la calidad del alineamiento.
+Para decidir qué tan bueno es un alineamiento, necesitamos alguna forma de "calificarlo". Aquí es donde entra el modelo de puntuación, que básicamente asigna valores a cada tipo de evento que puede ocurrir en el alineamiento.
 
 \subsubsection{Reglas de Puntuación Básicas}
 
 \begin{itemize}
-    \item Match: se asigna una puntuación positiva cuando dos nucleótidos coinciden. En el esquema simple: $+1$
+    \item Match: cuando dos nucleótidos coinciden, le damos puntos positivos. En nuestro caso simple, usamos $+1$.
     
-    \item Mismatch: se asigna una penalización cuando dos nucleótidos no coinciden. En el esquema simple: $-1$
+    \item Mismatch: si no coinciden, hay que penalizar. Aquí restamos $-1$.
 \end{itemize}
 
-En modelos más sofisticados, se utilizan matrices de sustitucion (como BLOSUM o PAM para proteínas) que consideran la probabilidad evolutiva de cada tipo de mutación específica.
+Ahora bien, esto es el esquema más básico. Cuando trabajamos con proteínas o queremos algo más sofisticado, podemos usar matrices especiales (como BLOSUM o PAM) que consideran cuán probable es evolutivamente cada tipo específico de mutación.
 
 \subsubsection{Penalización por Huecos}
 
-La penalizacion por gaps es crucial para evitar alineamientos excesivos con multiples inserciones/eliminaciones:
+Los gaps son un tema aparte. Si no los penalizáramos lo suficiente, el algoritmo podría llenar el alineamiento de huecos por todas partes, lo cual no tendría mucho sentido biológico:
 
 \begin{itemize}
-    \item Penalización por apertura de gap: costo inicial de introducir un nuevo gap. En el esquema simple: $-2$
+    \item Penalización por apertura de gap: es el costo que pagamos al crear un nuevo hueco. En nuestro modelo simple, usamos $-2$.
     
-    \item Penalización por extensión de gap: costo adicional por cada posición que se extiende un gap existente. Muchos algoritmos usan penalizaciones afines: $\text{penalty} = d + e \times k$, donde $d$ es el costo de apertura, $e$ el costo de extensión, y $k$ la longitud del gap.
+    \item Penalización por extensión de gap: algunos algoritmos más avanzados cobran extra por cada posición adicional que se extiende un gap. La fórmula típica es $\text{penalty} = d + e \times k$, donde $d$ es abrir el gap, $e$ es extenderlo, y $k$ es qué tan largo es.
 \end{itemize}
 
-En nuestro esquema simplificado, cada gap tiene un costo fijo de $-2$, independientemente de su longitud.
+Para simplificar, en nuestra implementación cada gap cuesta $-2$ fijo, sin importar cuánto mida. Esto hace las cosas más sencillas, aunque sacrificamos un poco de precisión biológica.
 
 \subsection{Algoritmo de Needleman-Wunsch}
 
-El algoritmo de Needleman-Wunsch (1970) es un método de programación dinámica que garantiza encontrar el alineamiento global óptimo entre dos secuencias. Es un algoritmo fundamental en bioinformatica.
+El algoritmo de Needleman-Wunsch apareció en 1970 y fue revolucionario para la bioinformática. Usa una técnica llamada programación dinámica que, aunque suena complicado, básicamente significa que va resolviendo el problema grande dividiéndolo en pedacitos más pequeños. Lo genial es que garantiza encontrar el mejor alineamiento global posible entre dos secuencias, no solo "uno bueno", sino el óptimo.
 
 \subsubsection{Construcción de la Matriz de Programación Dinámica}
 
-El algoritmo construye una matriz $M$ de dimensiones $(n+1) \times (m+1)$, donde $n$ y $m$ son las longitudes de las dos secuencias.
+Lo primero que hace el algoritmo es crear una matriz $M$ de tamaño $(n+1) \times (m+1)$, donde $n$ y $m$ son las longitudes de nuestras dos secuencias.
 
 \paragraph{Inicialización:}
 \begin{itemize}
-    \item La celda $M[0,0] = 0$ (secuencias vacias)
-    \item Primera fila: $M[0,j] = j \times \text{gap\_penalty}$ para $j = 1, \ldots, m$
-    \item Primera columna: $M[i,0] = i \times \text{gap\_penalty}$ para $i = 1, \ldots, n$
+    \item Empezamos poniendo $M[0,0] = 0$, que representa alinear dos secuencias vacías (obvio que cuesta 0)
+    \item La primera fila va llenándose: $M[0,j] = j \times \text{gap\_penalty}$ para $j = 1, \ldots, m$
+    \item Lo mismo con la primera columna: $M[i,0] = i \times \text{gap\_penalty}$ para $i = 1, \ldots, n$
 \end{itemize}
 
-Estas condiciones de frontera representan el costo de alinear una secuencia con la secuencia vacía (solo gaps).
+Esto tiene sentido si lo piensas: alinear una secuencia con "nada" solo puede hacerse metiendo gaps, y hay que pagar el precio por cada uno.
 
 \subsubsection{Ecuación de Recurrencia}
 
-Para cada celda $M[i,j]$, se calcula el score óptimo considerando tres posibilidades:
+Para llenar cada casilla $M[i,j]$, el algoritmo evalúa tres opciones y se queda con la que dé el mejor puntaje:
 
 \begin{equation}
 M[i,j] = \max \begin{cases}
@@ -135,7 +134,7 @@ M[i,j-1] + \text{gap} & \text{(izquierda: gap en seq1)}
 \end{cases}
 \end{equation}
 
-donde $s(x_i, y_j)$ es la puntuación de emparejar los caracteres $x_i$ y $y_j$:
+donde $s(x_i, y_j)$ es simplemente el puntaje que obtenemos al emparejar $x_i$ con $y_j$:
 
 \begin{equation}
 s(x_i, y_j) = \begin{cases}
@@ -144,7 +143,7 @@ s(x_i, y_j) = \begin{cases}
 \end{cases}
 \end{equation}
 
-Esta ecuación implementa el principio de optimalidad de Bellman: la solución óptima de un problema se puede construir a partir de soluciones óptimas de sus subproblemas.
+Este enfoque implementa algo conocido como el "principio de optimalidad de Bellman", que básicamente dice que si construyes la mejor solución usando las mejores soluciones de problemas más chicos, al final obtienes lo óptimo para el problema completo. Medio recursivo conceptualmente, pero funciona perfecto.
 
 \subsubsection{Proceso de Traceback}
 
@@ -167,40 +166,41 @@ Una vez construida la matriz completa, el score óptimo se encuentra en $M[n,m]$
 
 \subsubsection{Complejidad Computacional}
 
-El algoritmo tiene:
+En términos de eficiencia, el algoritmo funciona así:
 \begin{itemize}
-    \item Complejidad temporal: $O(n \times m)$ para construir la matriz
-    \item Complejidad espacial: $O(n \times m)$ para almacenar la matriz
+    \item Tiempo de ejecución: $O(n \times m)$ para armar toda la matriz
+    \item Memoria que necesita: $O(n \times m)$ para guardarla
 \end{itemize}
 
-Para secuencias muy largas, existen optimizaciones que reducen el espacio a $O(\min(n,m))$.
+Si trabajamos con secuencias enormes (pensá en genomas completos), existen algunos trucos de optimización que permiten reducir el uso de memoria a $O(\min(n,m))$. Sacrificás un poco de conveniencia pero ahorrás bastante espacio.
 
 \section{Parte 2: Implementación del Algoritmo}
 
 \subsection{repositorio}
-El repositorio del código puede encontrarse en: \url{https://github.com/denardifabricio/MIA_01c_CAED/tree/main/Ejercicio3}
+El repositorio del código puede encontrarse en: \url{https://github.com/denardifabricio/MIA_01c_CAED/tree/main/Ejercicio3a}
 
 \subsection{Descripción General del Código}
-Los invito a revisar el código completo en el archivo \texttt{needleman\_wunsch.py} en el repositorio de código, sin embargo, a modo de resumen:
-Se implementó el algoritmo de Needleman-Wunsch en Python para realizar alineamientos globales de secuencias de nucleótidos. El programa está estructurado de manera modular con las siguientes funciones principales:
+Los invito a revisar el código completo en el archivo \texttt{needleman\_wunsch.py} en el repositorio, pero déjenme contarles un poco cómo está organizado todo:
+
+Implementé el algoritmo de Needleman-Wunsch en Python pensando en que sea fácil de entender y usar. Lo armé de forma modular, con varias funciones que se encargan de diferentes partes del proceso:
 
 
 
 \subsubsection{Función \texttt{needleman\_wunsch()}}
 
-Esta es la función central que implementa el algoritmo completo:
+Esta es el corazón del programa. Acá es donde ocurre toda la magia del algoritmo:
 
 \begin{enumerate}
-    \item Inicialización: crea una matriz de dimensiones $(n+1) \times (m+1)$ e inicializa las condiciones de frontera con penalizaciones acumuladas de gaps.
+    \item Primero creo una matriz del tamaño necesario y la inicializo con las penalizaciones de gaps en los bordes, como explicamos antes.
     
-    \item Llenado de la matriz: implementa la ecuación de recurrencia iterando sobre cada celda y calculando el score óptimo considerando los tres movimientos posibles (diagonal, arriba, izquierda).
+    \item Después viene el llenado: recorro cada celda calculando el mejor puntaje posible según las tres opciones que tenemos (diagonal, arriba o izquierda).
     
-    \item Traceback: reconstruye el alineamiento óptimo recorriendo la matriz desde la esquina inferior derecha hasta el origen, determinando en cada paso qué movimiento produjo el valor actual.
+    \item Una vez llena la matriz, hago el traceback para recuperar cómo quedó el alineamiento óptimo. Voy retrocediendo desde la última celda hasta el principio.
     
-    \item Retorno: devuelve la matriz completa, ambas secuencias alineadas y el puntaje final.
+    \item Finalmente devuelvo todo: la matriz completa, las dos secuencias alineadas (con sus gaps incluidos) y el puntaje final.
 \end{enumerate}
 
-Código de inicialización de la matriz:
+Veamos algunos fragmentos del código para que se entienda mejor:
 
 \begin{lstlisting}[caption={Inicialización de la matriz y condiciones de frontera}]
 # Crear matriz de dimensiones (n+1) x (m+1)
@@ -287,17 +287,20 @@ alignment2 = ''.join(reversed(alignment2))
 
 \subsubsection{Funciones de Visualización}
 
+Para que sea más fácil ver qué está pasando, armé algunas funciones auxiliares:
+
 \begin{itemize}
-    \item \texttt{print\_matrix()}: imprime la matriz de puntuación de forma tabular, mostrando los encabezados de ambas secuencias para facilitar la interpretacion.
+    \item \texttt{print\_matrix()}: muestra la matriz de puntuación de una forma clara y ordenada, con los encabezados de las secuencias para que sea más fácil interpretarla.
     
-    \item \texttt{print\_alignment()}: visualiza el alineamiento resultante con simbolos intuitivos:
+    \item \texttt{print\_alignment()}: esta es mi favorita - te muestra el alineamiento con símbolos visuales super intuitivos:
     \begin{itemize}
-        \item \texttt{|} para matches (coincidencias)
-        \item \texttt{*} para mismatches (desajustes)
-        \item espacio para gaps (huecos)
+        \item Un \texttt{|} cuando hay un match perfecto
+        \item Un \texttt{*} para los mismatches
+        \item Y un espacio en blanco donde hay gaps
     \end{itemize}
+    Así de un vistazo ves qué tan bien alinearon las secuencias.
     
-    \item \texttt{analyze\_alignment()}: calcula y muestra estadisticas detalladas del alineamiento incluyendo número de matches, mismatches, gaps, y porcentaje de identidad.
+    \item \texttt{analyze\_alignment()}: hace el análisis cuantitativo. Te cuenta cuántos matches, mismatches y gaps hay, y calcula el porcentaje de identidad entre las secuencias.
 \end{itemize}
 
 Código para análisis de estadísticas:
@@ -327,15 +330,15 @@ print(f"Identidad:                 {porcentaje_identidad:.2f}%")
 
 \subsubsection{Esquema de Puntuación Implementado}
 
-El programa utiliza el siguiente modelo de puntuación simple:
+Decidí usar un modelo de puntuación bastante directo y simple:
 
 \begin{itemize}
-    \item Match: $+1$ (recompensa por nucleótidos idénticos)
-    \item Mismatch: $-1$ (penalización por nucleótidos diferentes)
-    \item Gap: $-2$ (penalización por inserción/eliminación)
+    \item Match: $+1$ (le damos un punto cuando coinciden)
+    \item Mismatch: $-1$ (restamos uno cuando no coinciden)
+    \item Gap: $-2$ (penalizamos más los huecos)
 \end{itemize}
 
-Este esquema favorece las coincidencias y penaliza más fuertemente los gaps que los mismatches, lo cual es apropiado para secuencias relacionadas evolutivamente donde las inserciones/eliminacions son eventos menos frecuentes que las sustituciones puntuales.
+¿Por qué estos valores? Bueno, con este esquema estamos diciendo que preferimos matchear los nucleótidos cuando sea posible, pero si hay que elegir entre un mismatch y un gap, preferimos el mismatch. Esto tiene sentido biológicamente porque las mutaciones puntuales (sustituciones) suelen ser más comunes que las inserciones o eliminaciones grandes en secuencias relacionadas evolutivamente.
 
 Código de definición de parámetros:
 
@@ -381,21 +384,21 @@ for seq1, seq2 in parejas_secuencias:
 
 \subsection{Casos de Prueba}
 
-El programa procesa 10 parejas de secuencias que cubren diversos escenarios:
+Para probar bien el programa, preparé 10 parejas diferentes de secuencias. Cada una representa un escenario distinto:
 
 \begin{enumerate}
-    \item ("GATTACA", "GCATGCU"): caso clásico de referencia con multiples mismatches
-    \item ("ACGT", "ACCT"): secuencias cortas con un unico mismatch
-    \item ("ATGCT", "AGCT"): requiere introducir un gap óptimo
-    \item Casos adicionales con secuencias de diferente longitud, alta similitud, múltiples gaps, etc.
+    \item ("GATTACA", "GCATGCU"): este es el ejemplo clásico que aparece en todos lados - tiene varios mismatches interesantes
+    \item ("ACGT", "ACCT"): algo cortito y simple, solo un mismatch
+    \item ("ATGCT", "AGCT"): acá necesitás introducir un gap para que salga bien el alineamiento
+    \item Y así sucesivamente... incluí casos con secuencias de distintos largos, algunas muy parecidas, otras que necesitan varios gaps, etc.
 \end{enumerate}
 
-Para cada pareja, el programa muestra:
+Para cada pareja, el programa te muestra un montón de info útil:
 \begin{itemize}
-    \item La matriz de puntuación completa
-    \item El alineamiento global óptimo
-    \item Estadísticas detalladas (matches, mismatches, gaps, identidad)
-    \item El puntaje final del alineamiento
+    \item Toda la matriz de puntuación (así podés ver cómo razona el algoritmo)
+    \item El alineamiento óptimo que encontró
+    \item Todas las estadísticas: matches, mismatches, gaps, porcentaje de identidad
+    \item Y el puntaje final que obtuvo ese alineamiento
 \end{itemize}
 
 \subsection{Características Técnicas}
@@ -410,7 +413,7 @@ Para cada pareja, el programa muestra:
 
 \subsection{Ejemplo de Resultado}
 
-Para la pareja \texttt{("GATTACA", "GCATGCU")}, el algoritmo produce:
+Para que veas cómo se ve la salida, acá está el resultado de alinear \texttt{("GATTACA", "GCATGCU")}:
 
 \begin{verbatim}
 Alineamiento óptimo:
@@ -427,7 +430,7 @@ Estadísticas:
 - Puntaje final: -1
 \end{verbatim}
 
-Este resultado muestra que aunque las secuencias comparten algunos nucleótidos conservados, presentan diferencias significativas que resultan en un score negativo, indicando baja similitud global.
+Fijate que aunque comparten algunas posiciones (las que tienen el \texttt{|}), hay bastantes diferencias (los \texttt{*}). El puntaje negativo nos está diciendo que, en general, estas secuencias no son muy similares. Un 42.86\% de identidad es medio bajo - en biología, secuencias con menos del 50\% de identidad generalmente no se consideran homólogas.
 
 
 \end{document}

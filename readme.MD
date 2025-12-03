@@ -50,6 +50,9 @@ La resolución está en [Ejercicio 3](./Ejercicio3/Ejercicio3.md).
 
 ### A modo de resumen: resolución
 - Un informe en PDF con la parte teórica y una explicación breve del código implementado.
+
+Si bien se solicitó 1 o 2 páginas, dado que lo hice con LaTex (suelen ser más páginas comparadas con un word) y quise hacerlo más completo, el infrome poseé más páginas.
+
 El informe teórico puede verse [aquí](./Ejercicio3/Informe.pdf).
 
 - El código fuente debidamente comentado.
