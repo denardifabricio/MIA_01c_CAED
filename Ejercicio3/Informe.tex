@@ -48,79 +48,79 @@
 
 \subsection{Secuencias de Nucleótidos y su Importancia}
 
-Cuando hablamos de secuencias de nucleótidos, nos referimos básicamente a esas cadenas de "letras" que forman el ADN o ARN de cualquier organismo vivo. En el ADN encontramos cuatro bases nitrogenadas principales: adenina (A), timina (T), guanina (G) y citosina (C). Por su parte, el ARN es bastante parecido, solo que la timina es sustituida por uracilo (U). Lo interesante es que estas secuencias no son solo combinaciones aleatorias, sino que guardan toda la información genética necesaria para producir proteínas y mantener funcionando las células.
+Las secuencias de nucleótidos se refieren a cadenas de bases que forman el ADN o ARN de cualquier organismo vivo. En el ADN se encuentran cuatro bases nitrogenadas principales: adenina (A), timina (T), guanina (G) y citosina (C). Por su parte, el ARN es bastante parecido, solo que la timina es sustituida por uracilo (U). Estas secuencias no son solo combinaciones aleatorias, sino que guardan toda la información genética necesaria para producir proteínas y mantener funcionando las células.
 
-¿Por qué es tan importante comparar estas secuencias? En biología molecular resulta fundamental por varios motivos:
+La comparación de estas secuencias resulta fundamental en biología molecular por varios motivos:
 
 \begin{itemize}
-    \item Cuando dos organismos tienen secuencias parecidas, es muy probable que compartan un ancestro común. Esto nos permite armar esos árboles evolutivos que muestran cómo están relacionadas las especies.
-    \item Si encontramos genes similares en organismos distintos, podemos predecir qué función tienen incluso sin haberlos estudiado directamente.
-    \item En medicina, comparar secuencias nos ayuda muchísimo para detectar mutaciones que causan enfermedades hereditarias.
-    \item Para la biotecnología moderna, esto es clave: desde diseñar los primers que usamos en PCR hasta desarrollar nuevas vacunas o terapias génicas.
+    \item Cuando dos organismos tienen secuencias parecidas, es muy probable que compartan un ancestro común. Esto permite armar árboles evolutivos que muestran cómo están relacionadas las especies.
+    \item Si se encuentran genes similares en organismos distintos, se puede predecir qué función tienen incluso sin haberlos estudiado directamente.
+    \item En medicina, comparar secuencias ayuda a detectar mutaciones que causan enfermedades hereditarias.
+    \item Para la biotecnología moderna, esto es clave: desde diseñar los primers que se usan en PCR hasta desarrollar nuevas vacunas o terapias génicas.
 \end{itemize}
 
 \subsection{Alineación de Secuencias}
 
-Alinear secuencias significa organizarlas de tal manera que podamos identificar qué partes se parecen entre sí. No es simplemente ponerlas una al lado de la otra, sino encontrar la mejor forma de disponerlas para ver patrones que nos digan algo sobre su relación evolutiva o funcional.
+Alinear secuencias significa organizarlas de tal manera que se puedan identificar qué partes se parecen entre sí. No es simplemente ponerlas una al lado de la otra, sino encontrar la mejor forma de disponerlas para ver patrones que indiquen algo sobre su relación evolutiva o funcional.
 
 \subsubsection{Tipos de Alineación}
 
-\paragraph{Alineación Global:} Aquí comparamos las secuencias completas, desde el primer nucleótido hasta el último. Funciona mejor cuando las secuencias tienen tamaños parecidos y creemos que están relacionadas en toda su longitud. El algoritmo de Needleman-Wunsch, que es el que vamos a usar en este trabajo, hace precisamente esto.
+\paragraph{Alineación Global:} Se comparan las secuencias completas, desde el primer nucleótido hasta el último. Funciona mejor cuando las secuencias tienen tamaños parecidos y se encuentran relacionadas en toda su longitud. El algoritmo de Needleman-Wunsch, que es el que se usa en este trabajo, hace precisamente esto.
 
-\paragraph{Alineación Local:} A veces no nos interesa comparar todo, sino buscar regiones específicas que sean similares dentro de secuencias más largas. Es útil cuando sabemos que solo ciertos dominios o fragmentos son parecidos. Para esto existe el algoritmo de Smith-Waterman.
+\paragraph{Alineación Local:} A veces no interesa comparar todo, sino buscar regiones específicas que sean similares dentro de secuencias más largas. Es útil cuando se sabe que solo ciertos dominios o fragmentos son parecidos. Para esto existe el algoritmo de Smith-Waterman.
 
 \subsubsection{Elementos de un Alineamiento}
 
 \begin{itemize}
-    \item Coincidencias (matches): son esas posiciones donde los nucleótidos de ambas secuencias son exactamente iguales. Cuando vemos muchas coincidencias, generalmente significa que esa región se ha conservado bastante bien a lo largo de la evolución, probablemente porque es importante funcionalmente.
+    \item Coincidencias (matches): son posiciones donde los nucleótidos de ambas secuencias son exactamente iguales. Cuando se observan muchas coincidencias, generalmente significa que esa región se ha conservado bastante bien a lo largo de la evolución, probablemente porque es importante funcionalmente.
     
-    \item Desajustes (mismatches): aquí es donde los nucleótidos difieren. Podría tratarse de mutaciones puntuales que ocurrieron en algún momento de la historia evolutiva de estas secuencias. No siempre son "malas", a veces estas diferencias son las que generan diversidad.
+    \item Desajustes (mismatches): son posiciones donde los nucleótidos difieren. Podría tratarse de mutaciones puntuales que ocurrieron en algún momento de la historia evolutiva de estas secuencias. No siempre son "malas", a veces estas diferencias son las que generan diversidad.
     
-    \item Huecos (gaps): estos representan lugares donde parece que se insertó o eliminó algo en una de las secuencias respecto a la otra. Los introducimos estratégicamente durante el alineamiento para que todo encaje mejor. En términos evolutivos, reflejan eventos de inserción o eliminación de nucleótidos que pueden haber ocurrido hace millones de años.
+    \item Huecos (gaps): representan lugares donde parece que se insertó o eliminó algo en una de las secuencias respecto a la otra. Se introducen estratégicamente durante el alineamiento para que todo encaje mejor. En términos evolutivos, reflejan eventos de inserción o eliminación de nucleótidos que pueden haber ocurrido hace millones de años.
 \end{itemize}
 
 \subsection{Modelo de Puntuación}
 
-Para decidir qué tan bueno es un alineamiento, necesitamos alguna forma de "calificarlo". Aquí es donde entra el modelo de puntuación, que básicamente asigna valores a cada tipo de evento que puede ocurrir en el alineamiento.
+Para decidir qué tan bueno es un alineamiento, se necesita alguna forma de "calificarlo". Aquí es donde entra el modelo de puntuación, que básicamente asigna valores a cada tipo de evento que puede ocurrir en el alineamiento.
 
 \subsubsection{Reglas de Puntuación Básicas}
 
 \begin{itemize}
-    \item Match: cuando dos nucleótidos coinciden, le damos puntos positivos. En nuestro caso simple, usamos $+1$.
+    \item Match: cuando dos nucleótidos coinciden, se asignan puntos positivos. En el caso simple, se usa $+1$.
     
-    \item Mismatch: si no coinciden, hay que penalizar. Aquí restamos $-1$.
+    \item Mismatch: si no coinciden, hay que penalizar. Se resta $-1$.
 \end{itemize}
 
-Ahora bien, esto es el esquema más básico. Cuando trabajamos con proteínas o queremos algo más sofisticado, podemos usar matrices especiales (como BLOSUM o PAM) que consideran cuán probable es evolutivamente cada tipo específico de mutación.
+Ahora bien, esto es el esquema más básico. Cuando se trabaja con proteínas o se requiere algo más sofisticado, se pueden usar matrices especiales (como BLOSUM o PAM) que consideran cuán probable es evolutivamente cada tipo específico de mutación.
 
 \subsubsection{Penalización por Huecos}
 
-Los gaps son un tema aparte. Si no los penalizáramos lo suficiente, el algoritmo podría llenar el alineamiento de huecos por todas partes, lo cual no tendría mucho sentido biológico:
+Los gaps son un tema aparte. Si no se penalizaran lo suficiente, el algoritmo podría llenar el alineamiento de huecos por todas partes, lo cual no tendría mucho sentido biológico:
 
 \begin{itemize}
-    \item Penalización por apertura de gap: es el costo que pagamos al crear un nuevo hueco. En nuestro modelo simple, usamos $-2$.
+    \item Penalización por apertura de gap: es el costo que se paga al crear un nuevo hueco. En el modelo simple, se usa $-2$.
     
     \item Penalización por extensión de gap: algunos algoritmos más avanzados cobran extra por cada posición adicional que se extiende un gap. La fórmula típica es $\text{penalty} = d + e \times k$, donde $d$ es abrir el gap, $e$ es extenderlo, y $k$ es qué tan largo es.
 \end{itemize}
 
-Para simplificar, en nuestra implementación cada gap cuesta $-2$ fijo, sin importar cuánto mida. Esto hace las cosas más sencillas, aunque sacrificamos un poco de precisión biológica.
+Para simplificar, en la implementación cada gap cuesta $-2$ fijo, sin importar cuánto mida. Esto hace las cosas más sencillas, aunque se sacrifica un poco de precisión biológica.
 
 \subsection{Algoritmo de Needleman-Wunsch}
 
-El algoritmo de Needleman-Wunsch apareció en 1970 y fue revolucionario para la bioinformática. Usa una técnica llamada programación dinámica que, aunque suena complicado, básicamente significa que va resolviendo el problema grande dividiéndolo en pedacitos más pequeños. Lo genial es que garantiza encontrar el mejor alineamiento global posible entre dos secuencias, no solo "uno bueno", sino el óptimo.
+El algoritmo de Needleman-Wunsch apareció en 1970 y fue revolucionario para la bioinformática. Usa una técnica llamada programación dinámica que básicamente significa que va resolviendo el problema grande dividiéndolo en pedacitos más pequeños. Lo importante es que garantiza encontrar el mejor alineamiento global posible entre dos secuencias, no solo "uno bueno", sino el óptimo.
 
 \subsubsection{Construcción de la Matriz de Programación Dinámica}
 
-Lo primero que hace el algoritmo es crear una matriz $M$ de tamaño $(n+1) \times (m+1)$, donde $n$ y $m$ son las longitudes de nuestras dos secuencias.
+Lo primero que hace el algoritmo es crear una matriz $M$ de tamaño $(n+1) \times (m+1)$, donde $n$ y $m$ son las longitudes de las dos secuencias.
 
 \paragraph{Inicialización:}
 \begin{itemize}
-    \item Empezamos poniendo $M[0,0] = 0$, que representa alinear dos secuencias vacías (obvio que cuesta 0)
-    \item La primera fila va llenándose: $M[0,j] = j \times \text{gap\_penalty}$ para $j = 1, \ldots, m$
+    \item Se coloca $M[0,0] = 0$, que representa alinear dos secuencias vacías (obviamente cuesta 0)
+    \item La primera fila se llena con: $M[0,j] = j \times \text{gap\_penalty}$ para $j = 1, \ldots, m$
     \item Lo mismo con la primera columna: $M[i,0] = i \times \text{gap\_penalty}$ para $i = 1, \ldots, n$
 \end{itemize}
 
-Esto tiene sentido si lo piensas: alinear una secuencia con "nada" solo puede hacerse metiendo gaps, y hay que pagar el precio por cada uno.
+Esto tiene sentido: alinear una secuencia con "nada" solo puede hacerse metiendo gaps, y hay que pagar el precio por cada uno.
 
 \subsubsection{Ecuación de Recurrencia}
 
@@ -172,7 +172,7 @@ En términos de eficiencia, el algoritmo funciona así:
     \item Memoria que necesita: $O(n \times m)$ para guardarla
 \end{itemize}
 
-Si trabajamos con secuencias enormes (pensá en genomas completos), existen algunos trucos de optimización que permiten reducir el uso de memoria a $O(\min(n,m))$. Sacrificás un poco de conveniencia pero ahorrás bastante espacio.
+Si se trabaja con secuencias enormes (por ejemplo genomas completos), existen algunos trucos de optimización que permiten reducir el uso de memoria a $O(\min(n,m))$. Se sacrifica un poco de conveniencia pero se ahorra espacio.
 
 \section{Parte 2: Implementación del Algoritmo}
 
@@ -180,27 +180,27 @@ Si trabajamos con secuencias enormes (pensá en genomas completos), existen algu
 El repositorio del código puede encontrarse en: \url{https://github.com/denardifabricio/MIA_01c_CAED/tree/main/Ejercicio3a}
 
 \subsection{Descripción General del Código}
-Los invito a revisar el código completo en el archivo \texttt{needleman\_wunsch.py} en el repositorio, pero déjenme contarles un poco cómo está organizado todo:
+El código completo puede revisarse en el archivo \texttt{needleman\_wunsch.py} en el repositorio. A continuación se describe cómo está organizado:
 
-Implementé el algoritmo de Needleman-Wunsch en Python pensando en que sea fácil de entender y usar. Lo armé de forma modular, con varias funciones que se encargan de diferentes partes del proceso:
+Se implementó el algoritmo de Needleman-Wunsch en Python de forma modular, con varias funciones que se encargan de diferentes partes del proceso:
 
 
 
 \subsubsection{Función \texttt{needleman\_wunsch()}}
 
-Esta es el corazón del programa. Acá es donde ocurre toda la magia del algoritmo:
+Esta es el corazón del programa. Aquí es donde ocurre el procesamiento principal del algoritmo:
 
 \begin{enumerate}
-    \item Primero creo una matriz del tamaño necesario y la inicializo con las penalizaciones de gaps en los bordes, como explicamos antes.
+    \item Primero se crea una matriz del tamaño necesario y se inicializa con las penalizaciones de gaps en los bordes, como se explicó anteriormente.
     
-    \item Después viene el llenado: recorro cada celda calculando el mejor puntaje posible según las tres opciones que tenemos (diagonal, arriba o izquierda).
+    \item Después viene el llenado: se recorre cada celda calculando el mejor puntaje posible según las tres opciones disponibles (diagonal, arriba o izquierda).
     
-    \item Una vez llena la matriz, hago el traceback para recuperar cómo quedó el alineamiento óptimo. Voy retrocediendo desde la última celda hasta el principio.
+    \item Una vez llena la matriz, se hace el traceback para recuperar cómo quedó el alineamiento óptimo. Se retrocede desde la última celda hasta el principio.
     
-    \item Finalmente devuelvo todo: la matriz completa, las dos secuencias alineadas (con sus gaps incluidos) y el puntaje final.
+    \item Finalmente se devuelve todo: la matriz completa, las dos secuencias alineadas (con sus gaps incluidos) y el puntaje final.
 \end{enumerate}
 
-Veamos algunos fragmentos del código para que se entienda mejor:
+A continuación se muestran algunos fragmentos del código:
 
 \begin{lstlisting}[caption={Inicialización de la matriz y condiciones de frontera}]
 # Crear matriz de dimensiones (n+1) x (m+1)
@@ -287,20 +287,20 @@ alignment2 = ''.join(reversed(alignment2))
 
 \subsubsection{Funciones de Visualización}
 
-Para que sea más fácil ver qué está pasando, armé algunas funciones auxiliares:
+Para facilitar la visualización, se implementaron algunas funciones auxiliares:
 
 \begin{itemize}
     \item \texttt{print\_matrix()}: muestra la matriz de puntuación de una forma clara y ordenada, con los encabezados de las secuencias para que sea más fácil interpretarla.
     
-    \item \texttt{print\_alignment()}: esta es mi favorita - te muestra el alineamiento con símbolos visuales super intuitivos:
+    \item \texttt{print\_alignment()}: muestra el alineamiento con símbolos visuales intuitivos:
     \begin{itemize}
         \item Un \texttt{|} cuando hay un match perfecto
         \item Un \texttt{*} para los mismatches
-        \item Y un espacio en blanco donde hay gaps
+        \item Un espacio en blanco donde hay gaps
     \end{itemize}
-    Así de un vistazo ves qué tan bien alinearon las secuencias.
+    Así de un vistazo se puede ver qué tan bien alinearon las secuencias.
     
-    \item \texttt{analyze\_alignment()}: hace el análisis cuantitativo. Te cuenta cuántos matches, mismatches y gaps hay, y calcula el porcentaje de identidad entre las secuencias.
+    \item \texttt{analyze\_alignment()}: hace el análisis cuantitativo. Cuenta cuántos matches, mismatches y gaps hay, y calcula el porcentaje de identidad entre las secuencias.
 \end{itemize}
 
 Código para análisis de estadísticas:
@@ -330,15 +330,15 @@ print(f"Identidad:                 {porcentaje_identidad:.2f}%")
 
 \subsubsection{Esquema de Puntuación Implementado}
 
-Decidí usar un modelo de puntuación bastante directo y simple:
+Se usa un modelo de puntuación bastante directo y simple:
 
 \begin{itemize}
-    \item Match: $+1$ (le damos un punto cuando coinciden)
-    \item Mismatch: $-1$ (restamos uno cuando no coinciden)
-    \item Gap: $-2$ (penalizamos más los huecos)
+    \item Match: $+1$ (se asigna un punto cuando coinciden)
+    \item Mismatch: $-1$ (se resta uno cuando no coinciden)
+    \item Gap: $-2$ (se penaliza más los huecos)
 \end{itemize}
 
-¿Por qué estos valores? Bueno, con este esquema estamos diciendo que preferimos matchear los nucleótidos cuando sea posible, pero si hay que elegir entre un mismatch y un gap, preferimos el mismatch. Esto tiene sentido biológicamente porque las mutaciones puntuales (sustituciones) suelen ser más comunes que las inserciones o eliminaciones grandes en secuencias relacionadas evolutivamente.
+Con este esquema se indica que se prefiere matchear los nucleótidos cuando sea posible, pero si hay que elegir entre un mismatch y un gap, se prefiere el mismatch. Esto tiene sentido biológicamente porque las mutaciones puntuales (sustituciones) suelen ser más comunes que las inserciones o eliminaciones grandes en secuencias relacionadas evolutivamente.
 
 Código de definición de parámetros:
 
@@ -384,21 +384,21 @@ for seq1, seq2 in parejas_secuencias:
 
 \subsection{Casos de Prueba}
 
-Para probar bien el programa, preparé 10 parejas diferentes de secuencias. Cada una representa un escenario distinto:
+Para probar el programa, se prepararon 10 parejas diferentes de secuencias. Cada una representa un escenario distinto:
 
 \begin{enumerate}
-    \item ("GATTACA", "GCATGCU"): este es el ejemplo clásico que aparece en todos lados - tiene varios mismatches interesantes
-    \item ("ACGT", "ACCT"): algo cortito y simple, solo un mismatch
-    \item ("ATGCT", "AGCT"): acá necesitás introducir un gap para que salga bien el alineamiento
-    \item Y así sucesivamente... incluí casos con secuencias de distintos largos, algunas muy parecidas, otras que necesitan varios gaps, etc.
+    \item ("GATTACA", "GCATGCU"): este es el ejemplo clásico que aparece en la literatura - tiene varios mismatches interesantes
+    \item ("ACGT", "ACCT"): secuencias cortas y simples, solo un mismatch
+    \item ("ATGCT", "AGCT"): se necesita introducir un gap para obtener un buen alineamiento
+    \item Se incluyen casos con secuencias de distintos largos, algunas muy parecidas, otras que necesitan varios gaps, etc.
 \end{enumerate}
 
-Para cada pareja, el programa te muestra un montón de info útil:
+Para cada pareja, el programa muestra información detallada:
 \begin{itemize}
-    \item Toda la matriz de puntuación (así podés ver cómo razona el algoritmo)
-    \item El alineamiento óptimo que encontró
+    \item Toda la matriz de puntuación (para poder observar cómo razona el algoritmo)
+    \item El alineamiento óptimo encontrado
     \item Todas las estadísticas: matches, mismatches, gaps, porcentaje de identidad
-    \item Y el puntaje final que obtuvo ese alineamiento
+    \item El puntaje final que obtuvo ese alineamiento
 \end{itemize}
 
 \subsection{Características Técnicas}
@@ -413,7 +413,7 @@ Para cada pareja, el programa te muestra un montón de info útil:
 
 \subsection{Ejemplo de Resultado}
 
-Para que veas cómo se ve la salida, acá está el resultado de alinear \texttt{("GATTACA", "GCATGCU")}:
+A continuación se muestra el resultado de alinear \texttt{("GATTACA", "GCATGCU")}:
 
 \begin{verbatim}
 Alineamiento óptimo:
@@ -430,7 +430,7 @@ Estadísticas:
 - Puntaje final: -1
 \end{verbatim}
 
-Fijate que aunque comparten algunas posiciones (las que tienen el \texttt{|}), hay bastantes diferencias (los \texttt{*}). El puntaje negativo nos está diciendo que, en general, estas secuencias no son muy similares. Un 42.86\% de identidad es medio bajo - en biología, secuencias con menos del 50\% de identidad generalmente no se consideran homólogas.
+Se puede observar que aunque comparten algunas posiciones (las que tienen el \texttt{|}), hay bastantes diferencias (los \texttt{*}). El puntaje negativo indica que, en general, estas secuencias no son muy similares. Un 42.86\% de identidad es relativamente bajo - en biología, secuencias con menos del 50\% de identidad generalmente no se consideran homólogas.
 
 
 
@@ -443,6 +443,14 @@ Needleman, S. B., \& Wunsch, C. D. (1970).
 \textit{A general method applicable to the search for similarities in the amino acid sequence of two proteins}. 
 Journal of Molecular Biology, 48(3), 443-453.
 Link: \url{https://web.stanford.edu/class/sbio228/public/readings/Bioinformatics_I_Lecture6/Needleman_Wunsch_JMB_70_Global_alignment.pdf?utm_source=chatgpt.com}
+
+
+
+\bibitem{anandakumar2020}
+Anandakumar, M. (2020). 
+\textit{Needleman-Wunsch algorithm for DNA sequence alignment}. 
+Medium.
+Link: \url{https://medium.com/@amithunjha/needleman-wunsch-algorithm-for-dna-sequence-alignment-b103b8454de0}
 
 
 \bibitem{needlemanWIKI}
